@@ -41,7 +41,8 @@ def takeCommand():       ## speech as an input will be taken in this function
 
     try:
         print("Recognizing...")    
-        query = r.recognize_google(audio, language='en-in')    #User Language
+        query = r.recognize_google(audio, language='en-in')    #User Language should be english
+       ## text = r.recognize_google(audio, language = 'hi-IN')    ## for hindi
         print(f"User said: {query}\n")
 
     except Exception as e:
