@@ -1,10 +1,10 @@
 import pyttsx3 #pip install pyttsx3
-import speech_recognition as sr #pip install speechRecognition
-import datetime
-import wikipedia
+import speech_recognition as sr #pip install speechRecognition for speech recognition
+import datetime  #to draw real time dimensions
+import wikipedia  #for searching section
 import webbrowser
 import os
-#import smtplibv
+#import smtplibv      #for sending email messages
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -17,7 +17,7 @@ def speak(audio):
     engine.runAndWait()
 
 
-def wishMe():
+def wishMe():                                  #This section I added to flabergast the user by wishing him/her wishes according to real time.
     hour = int(datetime.datetime.now().hour)
     if hour>=0 and hour<12:
         speak("Good Morning!")
@@ -30,18 +30,18 @@ def wishMe():
 
     speak("I am Google do.  I am Mr. URJIT's personal assistant. Please tell me how may I help you")       
 
-def takeCommand():
+def takeCommand():       ## speech as an input will be taken in this function
     #It takes microphone input from the user and returns string output
 
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
-        r.pause_threshold = 1
+        r.pause_threshold = 1          #I have added this threshhold that is 1 because the machine will wait for 1 sec to get input voice. Or else if we stop takling for a sec then it will consider the collected set of commands as its processing input.
         audio = r.listen(source)
 
     try:
         print("Recognizing...")    
-        query = r.recognize_google(audio, language='en-in')
+        query = r.recognize_google(audio, language='en-in')    #User Language
         print(f"User said: {query}\n")
 
     except Exception as e:
@@ -49,7 +49,7 @@ def takeCommand():
         print("Say that again please...")  
         return "None"
     return query
-'''
+'''# the section I have added below is for sending voice command emails.
 def sendEmail(to, content):
     server = smtplib.SMTP('smntp.gmail.com', 587)
     server.ehlo()
@@ -63,11 +63,11 @@ def sendEmail(to, content):
 
 if __name__ == "__main__":
     
-    while 1:
+    while 1:  # this loop is because to stay connected with the googledo even after executing our command. It will stop only after we say bye i.e. to break the loop XD.
         wishMe()
         query = takeCommand().lower()
 
-            #Logic for exicuting task based on queries
+            #Logic for exicuting task based on queries we asked
         if 'wikipedia' in query:
             speak("Searching wikipedia.....")
             query = query.replace("wikipedia", "")
