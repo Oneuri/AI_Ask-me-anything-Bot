@@ -55,7 +55,7 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smntp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('urjittembhurnikar08@gmail.com', 'Oneplusurjit@123personal')
+    server.login('urjittembhurnikar08@gmail.com', P)
     server.sendmail('ujwaltembhurnikar@gmail.com', to, content)
     server.close()
 '''
@@ -122,7 +122,7 @@ if __name__ == "__main__":
             speak("Hope you enjoyed having conversation with me! Stay home,stay safe! Take care! bye bye!")
             break
             
-           
+           #for email sending...
     '''
         elif 'send an email' in query:
             try:
